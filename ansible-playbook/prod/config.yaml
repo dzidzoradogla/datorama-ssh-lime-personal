@@ -1,0 +1,232 @@
+kubectl_version: v1.14.1
+rnd_endpoints:
+# prod-us
+- cdp-analyzer-presto-prod-us.datorama.com:8443
+- cdp-analyzer-presto-prod-us-blue.datorama.com:8443
+- cdp-analyzer-presto-prod-us-green.datorama.com:8443
+- cdp-presto-prod-us.datorama.com:8443
+- cdp-presto-prod-us-blue.datorama.com:8443
+- cdp-presto-prod-us-green.datorama.com:8443
+- dingo-regression-1.cawg4pjgdcqz.us-east-1.rds.amazonaws.com:5432
+- mcr-etl-2-presto-prod-us.datorama.com:8443
+- mcr-etl-2-presto-prod-us-blue.datorama.com:8443
+- mcr-etl-2-presto-prod-us-green.datorama.com:8443
+- mcr-etl-presto-prod-us.datorama.com:8443
+- mcr-etl-presto-prod-us-blue.datorama.com:8443
+- mcr-etl-presto-prod-us-green.datorama.com:8443
+- mcr-presto-prod-us.datorama.com:8443
+- mcr-presto-prod-us-blue.datorama.com:8443
+- mcr-presto-prod-us-green.datorama.com:8443
+- presto-prod-us.datorama.com:8443
+- presto-prod-us-blue.datorama.com:8443
+- presto-prod-us-green.datorama.com:8443
+- proddb-dw-shard01us1.datorama.com:5433
+- proddb-dw-shard02us1.datorama.com:5433
+- proddb-dw-shard04us1.datorama.com:5433
+- proddb-dw-shard05us1.datorama.com:5433
+- proddb-dw-shard06us1.datorama.com:5433
+- proddb-dw-shard07us1.datorama.com:5433
+- proddb-dw-shard08us1.datorama.com:5433
+- proddb-dw-shard09us1.datorama.com:5433
+- proddb-dw-shard10us1.datorama.com:5433
+- proddb-dw-shard11us1.datorama.com:5433
+- proddb-dw-shard12us1.datorama.com:5433
+- proddb-dw-shard13us1.datorama.com:5433
+- proddb-dw-shard14us1.datorama.com:5433
+- proddb-dw-shard15us1.datorama.com:5433
+- proddb-dw-shard16us1.datorama.com:5433
+- proddb-dw-shard17us1.datorama.com:5433
+- proddb-dw-shard18us1.datorama.com:5433
+- proddb-dw-shard19us1.datorama.com:5433
+- proddb-dw-shard22us1.datorama.com:5433
+- proddb-dw-shard23us1.datorama.com:5432
+- proddb-dw-shard24us1.datorama.com:5433
+- proddb-dw-shard25us1.datorama.com:5433
+- proddb-dw-shard26us1.datorama.com:5433
+- proddb-dw-shard28us1.datorama.com:5433
+- proddb-dw-shard30us1.datorama.com:5433
+- proddb-dw-shard31us1.datorama.com:5433
+- proddb-dw-shard33us1.datorama.com:5433
+- proddb-dw-shard34us1.datorama.com:5433
+- proddb-dw-shard35us1.datorama.com:5433
+- proddb-dw-shard36us1.datorama.com:5433
+- proddb-dw-shard37us1.datorama.com:5433
+- proddb-dw-shard38us1.datorama.com:5433
+- proddb-dw-shard39us1.datorama.com:5433
+- proddb-dw-shard40us1.datorama.com:5433
+- proddb-dw-shard41us1.datorama.com:5432
+- proddb-dw-shard42us1.datorama.com:5432
+- proddb-dw-shard45us1.datorama.com:5432
+- proddb-dw-shard47us1.datorama.com:5432
+- proddb-dw-shard48us1.datorama.com:5432
+- proddb-dw-shard50us1.datorama.com:5432
+- proddb-dw-shard51us1.datorama.com:5432
+- proddb-dw-shard52us1.datorama.com:5432
+- proddb-dw-shard53us1.datorama.com:5432
+- proddb-dw-shard54us1.datorama.com:5432
+- proddb-dw-shard55us1.datorama.com:5432
+- proddb-dw-shard56us1.datorama.com:5432
+- proddb-oltp.datorama.com:5432
+- proddb-servicedb.datorama.com:5432
+# prod-eu
+- cdp-presto-prod-eu.datorama.com:8443
+- cdp-presto-prod-eu-blue.datorama.com:8443
+- cdp-presto-prod-eu-green.datorama.com:8443
+- mcr-presto-prod-eu.datorama.com:8443
+- mcr-presto-prod-eu-blue.datorama.com:8443
+- mcr-presto-prod-eu-green.datorama.com:8443
+- presto-prod-eu.datorama.com:8443
+- presto-prod-eu-blue.datorama.com:8443
+- presto-prod-eu-green.datorama.com:8443
+- proddb-oltp-frank.datorama.com:5432
+- proddb-servicedb-frank.datorama.com:5432
+- proddb-dw-shard03eu1.datorama.com:5433
+- proddb-dw-shard61eu1.datorama.com:5433
+- proddb-dw-shard62eu1.datorama.com:5432
+- proddb-dw-shard63eu1.datorama.com:5433
+# prod-eu2
+- azure-eu-oltp.datorama.com:5432
+- azure-eu-servicedb.datorama.com:5432
+- presto-prod-eu2.datorama.com:8443
+- presto-prod-eu2-blue.datorama.com:8443
+- presto-prod-eu2-green.datorama.com:8443
+- proddb-dw-shard04eu2.datorama.com:5433
+- proddb-dw-shard05eu2.datorama.com:5433
+- proddb-dw-shard06eu2.datorama.com:5433
+- proddb-dw-shard07eu2.datorama.com:5433
+- proddb-dw-shard08eu2.datorama.com:5433
+# prod-us2
+- azure-us-oltp.datorama.com:5432
+- azure-us-servicedb.datorama.com:5432
+- presto-prod-us2.datorama.com:8443
+- presto-prod-us2-blue.datorama.com:8443
+- presto-prod-us2-green.datorama.com:8443
+- proddb-dw-shard03us2.datorama.com:5433
+- proddb-dw-shard05us2.datorama.com:5433
+devops:
+- afradlin
+- amanzur
+- asharf
+- dzbarski
+- ichernomorin
+- ishine
+- nbasson
+- ohayoun
+- rkazarnovsky
+- rmotcheri
+- svaiman
+- zmarkfeld
+- zmetzger
+- aberkun
+packages:
+- apt-transport-https
+- build-essential
+- curl
+- default-mysql-client
+- docker.io
+- golang
+- gpg
+- htop
+- jq
+- lsb-release
+- netcat
+- openjdk-11-jdk-headless
+- postgresql-client
+- python3-boto3
+- python3-botocore
+- ruby-full
+- screen
+- snapd
+- tmux
+- vault
+users:
+- name: zmarkfeld
+  uid: 3000
+- name: svaiman
+  uid: 3001
+- name: afradlin
+  uid: 3002
+- name: nbasson
+  uid: 3003
+- name: rkazarnovsky
+  uid: 3004
+- name: ichernomorin
+  uid: 3005
+- name: dzbarski
+  uid: 3006
+- name: zmetzger
+  uid: 3007
+- name: asharf
+  uid: 3008
+- name: amanzur
+  uid: 3009
+- name: ktishbi
+  uid: 3010
+- name: jvelger
+  deprovision: true
+  uid: 3011
+- name: ohayoun
+  uid: 3012
+- name: ishine
+  deprovision: true
+  terminate: true
+  uid: 3013
+- name: avia.tam
+  deprovision: true
+  terminate: true
+  uid: 3016
+- name: agoldgamer
+  deprovision: true
+  terminate: true
+  uid: 3017
+- name: matan.parker
+  deprovision: true
+  uid: 3018
+- name: ipogrebinsky
+  deprovision: true
+  terminate: true
+  uid: 3019
+- name: jsanzgonzalez
+  deprovision: true
+  terminate: true
+  uid: 3020
+- name: pulkit.agarwal
+  deprovision: true
+  terminate: true
+  uid: 3021
+- name: aomelik
+  deprovision: true
+  terminate: true
+  uid: 3022
+- name: rmotcheri
+  deprovision: true
+  uid: 3023
+- name: efarago
+  uid: 3024
+- name: ugonen
+  uid: 3025
+- name: bkedem
+  uid: 3026
+- name: lbuanos
+  uid: 3027
+- name: ivelichanski
+  uid: 3028
+- name: tglixman
+  uid: 3029
+- name: dpolonsky
+  uid: 3030
+- name: abrodov
+  deprovision: true
+  terminate: true
+  uid: 3031
+- name: ggilin
+  uid: 3032
+- name: aberkun
+  uid: 3033
+- name: cgoldish
+  uid: 3034
+- name: cavraham
+  uid: 3035
+- name: gilad.cohen
+  uid: 3036
+yaml2json_version: v1.3

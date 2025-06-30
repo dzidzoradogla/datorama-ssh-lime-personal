@@ -1,0 +1,88 @@
+kubectl_version: v1.14.1
+rnd_endpoints:
+- fe-cdp-sf.cpxac2r8z1uz.us-east-1.rds.amazonaws.com:5432
+devops:
+- afradlin
+- amanzur
+- asharf
+- dzbarski
+- ichernomorin
+- ishine
+- nbasson
+- ohayoun
+- rkazarnovsky
+- rmotcheri
+- svaiman
+- zmarkfeld
+- zmetzger
+packages:
+- apt-transport-https
+- build-essential
+- curl
+- default-mysql-client
+- docker.io
+- golang
+- gpg
+- htop
+- jq
+- lsb-release
+- netcat
+- openjdk-11-jdk-headless
+- postgresql-client
+- python3-boto3
+- python3-botocore
+- ruby-full
+- screen
+- snapd
+- tmux
+- vault
+users:
+- name: zmarkfeld
+  uid: 3000
+- name: svaiman
+  uid: 3001
+- name: afradlin
+  uid: 3002
+- name: nbasson
+  uid: 3003
+- name: rkazarnovsky
+  uid: 3004
+- name: ichernomorin
+  uid: 3005
+- name: dzbarski
+  uid: 3006
+- name: zmetzger
+  uid: 3007
+- name: asharf
+  uid: 3008
+- name: amanzur
+  uid: 3009
+- name: jvelger
+  deprovision: true
+  uid: 3011
+- name: dpolonsky
+  uid: 3100
+- name: ohayoun
+  uid: 3012
+- name: sklebanov
+  uid: 3013
+- name: ishine
+  deprovision: true
+  terminate: true
+  uid: 3014
+- name: ygeva
+  uid: 3015
+- name: avia.tam
+  deprovision: true
+  terminate: true
+  uid: 3016
+- name: agoldgamer
+  uid: 3017
+- name: matan.parker
+  deprovision: true
+  uid: 3018
+- name: ipogrebinsky
+  deprovision: true
+  terminate: true
+  uid: 3019
+yaml2json_version: v1.3

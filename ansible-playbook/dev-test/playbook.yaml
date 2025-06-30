@@ -1,0 +1,183 @@
+---
+- name: bastion host
+  hosts: 127.0.0.1
+  connection: local
+  become: yes
+  vars_files:
+    - config.yaml
+  tasks:
+  - name: setup ansible cronjob
+    cron:
+      job: "git -C /root/datorama-ssh pull origin ; PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin ansible-playbook /root/datorama-ssh/ansible-playbook/dev-test/playbook.yaml > /root/ansible.log 2>&1"
+      minute: "*/5"
+      name: ansible
+  - name: add debian testing apt repo
+    apt_repository:
+      repo: deb http://cdn-aws.deb.debian.org/debian testing main
+      state: present
+      filename: testing
+  - name: add vault apt key
+    apt_key:
+      url: https://apt.releases.hashicorp.com/gpg
+  - name: add debian vault apt repo
+    apt_repository:
+      repo: deb [arch=amd64] https://apt.releases.hashicorp.com buster main
+      state: present
+      filename: testing
+  - name: upgrade
+    ignore_errors: yes
+    apt:
+      upgrade: 'yes'
+      update_cache: yes
+  - name: install packages
+    ignore_errors: yes
+    apt:
+      update_cache: yes
+      name: "{{ packages }}"
+  - name: add azure cli apt key
+    apt_key:
+      url: https://packages.microsoft.com/keys/microsoft.asc
+  - name: add azure cli repo
+    apt_repository:
+      repo: deb [arch=amd64] https://packages.microsoft.com/repos/azure-cli/ buster main
+      state: present
+  - name: install azure cli
+    ignore_errors: yes
+    apt:
+      name: azure-cli
+      update_cache: yes
+  - name: download datorama root CA certificates
+    command: aws s3 cp s3://datorama-devops-stg/root-certificates/ /usr/local/share/ca-certificates --exclude '*' --include '*.crt' --recursive
+  - name: install datorama root CA certificates
+    command: /usr/sbin/update-ca-certificates --verbose
+  - name: download and setup kubectl
+    get_url:
+      dest: /usr/local/bin/kubectl
+      group: root
+      mode: 0755
+      owner: root
+      url: https://storage.googleapis.com/kubernetes-release/release/{{ kubectl_version }}/bin/linux/amd64/kubectl
+  - name: download and setup yaml2json
+    get_url:
+      dest: /usr/local/bin/yaml2json
+      group: root
+      mode: 0755
+      owner: root
+      url: https://github.com/bronze1man/yaml2json/releases/download/{{ yaml2json_version }}/yaml2json_linux_amd64
+  - name: download datorama-devops
+    command: aws s3 cp s3://datorama-devops-stg/datorama-devops-cli/bin/datorama-devops.linux.amd64 /usr/local/bin/datorama-devops
+  - name: setup datorama-devops
+    file:
+      path: /usr/local/bin/datorama-devops
+      owner: root
+      group: root
+      mode: 0755
+  - name: download vault key
+    aws_s3:
+      bucket: datorama-devops-stg
+      object: /bastion/vault.token
+      dest: /root/.vault.token
+      mode: get
+  - name: setup ssh - sign host keys and download root ca certificate
+    command: "{{ playbook_dir }}/setup-ssh.sh"
+  - name: devops group
+    group:
+      name: devops
+      state: present
+  - name: rnd-users group
+    group:
+      name: rnd-users
+      state: present
+  - name: set ChallengeResponseAuthentication=yes in sshd_config
+    lineinfile:
+      path: /etc/ssh/sshd_config
+      regexp: '^ChallengeResponseAuthentication'
+      line: 'ChallengeResponseAuthentication yes'
+  - name: add TrustedUserCAKeys /etc/ssh-test/trusted-user-ca-keys.pem in sshd_config
+    lineinfile:
+      path: /etc/ssh/sshd_config
+      regexp: '^TrustedUserCAKeys'
+      line: 'TrustedUserCAKeys /etc/ssh/trusted-user-ca-keys.pem'
+  - name: add HostCertificate /etc/ssh-test/ssh_host_rsa_key-cert.pub in sshd_config
+    lineinfile:
+      path: /etc/ssh/sshd_config
+      regexp: '^HostCertificate /etc/ssh/ssh_host_rsa_key-cert.pub'
+      line: 'HostCertificate /etc/ssh/ssh_host_rsa_key-cert.pub'
+  - name: add HostCertificate /etc/ssh-test/ssh_host_ecdsa_key-cert.pub in sshd_config
+    lineinfile:
+      path: /etc/ssh/sshd_config
+      regexp: '^HostCertificate /etc/ssh/ssh_host_ecdsa_key-cert.pub'
+      line: 'HostCertificate /etc/ssh/ssh_host_ecdsa_key-cert.pub'
+  - name: add HostCertificate /etc/ssh-test/ssh_host_ed25519_key-cert.pub in sshd_config
+    lineinfile:
+      path: /etc/ssh/sshd_config
+      regexp: '^HostCertificate /etc/ssh/ssh_host_ed25519_key-cert.pub'
+      line: 'HostCertificate /etc/ssh/ssh_host_ed25519_key-cert.pub'
+  - name: add ClientAliveInterval 60 in sshd_config
+    lineinfile:
+      path: /etc/ssh/sshd_config
+      regexp: '^ClientAliveInterval'
+      line: 'ClientAliveInterval 60'
+  - name: add ClientAliveCountMax 15 in sshd_config
+    lineinfile:
+      path: /etc/ssh/sshd_config
+      regexp: '^ClientAliveCountMax'
+      line: 'ClientAliveCountMax 15'
+  - name: set MaxSessions 100 in sshd_config
+    lineinfile:
+      path: /etc/ssh/sshd_config
+      regexp: '^MaxSessions'
+      line: 'MaxSessions 100'
+  - name: set UsePAM no in sshd_config
+    lineinfile:
+      path: /etc/ssh/sshd_config
+      regexp: '^UsePAM'
+      line: 'UsePAM no'
+  - name: set DenyGroups disabled-ssh-users in sshd_config
+    lineinfile:
+      path: /etc/ssh/sshd_config
+      regexp: '^DenyGroups'
+      line: 'DenyGroups disabled-ssh-users'
+  - name: set PubkeyAcceptedAlgorithms in sshd_config
+    lineinfile:
+      path: /etc/ssh/sshd_config
+      regexp: '^PubkeyAcceptedAlgorithms'
+      line: 'PubkeyAcceptedAlgorithms ssh-ed25519-cert-v01@openssh.com,ecdsa-sha2-nistp256-cert-v01@openssh.com,ecdsa-sha2-nistp384-cert-v01@openssh.com,ecdsa-sha2-nistp521-cert-v01@openssh.com,sk-ssh-ed25519-cert-v01@openssh.com,sk-ecdsa-sha2-nistp256-cert-v01@openssh.com,rsa-sha2-512-cert-v01@openssh.com,rsa-sha2-256-cert-v01@openssh.com,ssh-rsa-cert-v01@openssh.com,ssh-ed25519,ecdsa-sha2-nistp256,ecdsa-sha2-nistp384,ecdsa-sha2-nistp521,sk-ssh-ed25519@openssh.com,sk-ecdsa-sha2-nistp256@openssh.com,rsa-sha2-512,rsa-sha2-256,ssh-rsa'
+  - name: sshd restart
+    service:
+      name: sshd
+      state: restarted
+  - name: disabled-ssh-users group
+    group:
+      name: disabled-ssh-users
+      state: present
+  - name: setup sudo
+    copy:
+      src: files/50-sudo-group
+      dest: /etc/sudoers.d/50-sudo-group
+      owner: root
+      group: root
+      mode: 0440
+  - name: add en_US.UTF-8 locale
+    lineinfile:
+      path: /etc/locale.gen
+      regexp: '#\s*en_US.UTF-8 UTF-8'
+      line: 'en_US.UTF-8 UTF-8'
+    notify:
+    - locale-gen
+  - name: set rnd-users group restriction in sshd_config
+    blockinfile:
+      path: /etc/ssh/sshd_config
+      validate: /usr/sbin/sshd -T -f %s
+      block: |
+        Match Group rnd-users
+          PermitOpen {{ rnd_endpoints | join(' ') }}
+          X11Forwarding no
+          AllowAgentForwarding no
+          ForceCommand /bin/false
+          PermitTTY no
+  - include_tasks: user.yaml
+    with_items: "{{ users }}"
+  handlers:
+  - name: locale-gen
+    command: locale-gen

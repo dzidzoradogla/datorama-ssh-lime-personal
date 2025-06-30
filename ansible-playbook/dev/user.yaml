@@ -1,0 +1,39 @@
+---
+- name: "terminate user {{ item.name }} SSH connections"
+  command:
+    argv: ["pkill", "-u", "{{ item.name }}"]
+  ignore_errors: yes
+  when: item.terminate is defined or item.deprovision is defined
+- name: "add user {{ item.name }}"
+  user:
+    name: "{{ item.name }}"
+    groups:
+    - sudo
+    - "{{ 'disabled-ssh-users' if item.deprovision | default(false) else 'users' }}"
+    - "{{ 'devops' if item.name in devops else 'rnd-users' }}"
+    password: !
+    shell: /bin/bash
+    uid: "{{ item.uid }}"
+- name: "set /home/{{ item.name }}/.ssh permissions"
+  file:
+    group: "{{ item.name }}"
+    mode: 0755
+    owner: "{{ item.name }}"
+    path: "/home/{{ item.name }}/.ssh"
+    state: directory
+- name: "set PubkeyAcceptedAlgorithms in /home/{{ item.name }}/.ssh/config"
+  lineinfile:
+    create: yes
+    group: "{{ item.name }}"
+    line: 'PubkeyAcceptedAlgorithms +rsa-sha2-512-cert-v01@openssh.com,rsa-sha2-256-cert-v01@openssh.com,ssh-rsa-cert-v01@openssh.com'
+    owner: "{{ item.name }}"
+    path: "/home/{{ item.name }}/.ssh/config"
+    regexp: '^PubkeyAcceptedAlgorithms'
+- name: "set HostKeyAlgorithms in /home/{{ item.name }}/.ssh/config"
+  lineinfile:
+    create: yes
+    group: "{{ item.name }}"
+    line: 'HostKeyAlgorithms +rsa-sha2-512-cert-v01@openssh.com,rsa-sha2-256-cert-v01@openssh.com'
+    owner: "{{ item.name }}"
+    path: "/home/{{ item.name }}/.ssh/config"
+    regexp: '^HostKeyAlgorithms'
