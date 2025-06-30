@@ -19,6 +19,7 @@ devops:
 - svaiman
 - zmarkfeld
 - zmetzger
+- dadoglabessa
 packages:
 - apt-transport-https
 - build-essential
@@ -119,4 +120,6 @@ users:
   uid: 3033
 - name: cgoldish
   uid: 3034
+- name: dadoglabessa
+  uid: 3035
 yaml2json_version: v1.3
