@@ -1,0 +1,132 @@
+policies:
+  - name: ssh-user-gilad.cohen
+    rules: |
+      path "ssh-client/sign/gilad.cohen" { capabilities = ["update"] }
+      path "ssh-client/config/ca" { capabilities = ["read"] }
+  - name: ssh-user-cavraham
+    rules: |
+      path "ssh-client/sign/cavraham" { capabilities = ["update"] }
+      path "ssh-client/config/ca" { capabilities = ["read"] }
+  - name: ssh-user-cgoldish
+    rules: |
+      path "ssh-client/sign/cgoldish" { capabilities = ["update"] }
+      path "ssh-client/config/ca" { capabilities = ["read"] }
+  - name: ssh-user-aberkun
+    rules: |
+      path "ssh-client/sign/aberkun" { capabilities = ["update"] }
+      path "ssh-client/config/ca" { capabilities = ["read"] }
+  - name: ssh-user-ggilin
+    rules: |
+      path "ssh-client/sign/ggilin" { capabilities = ["update"] }
+      path "ssh-client/config/ca" { capabilities = ["read"] }
+  - name: ssh-user-dpolonsky
+    rules: |
+      path "ssh-client/sign/dpolonsky" { capabilities = ["update"] }
+      path "ssh-client/config/ca" { capabilities = ["read"] }
+  - name: ssh-user-tglixman
+    rules: |
+      path "ssh-client/sign/tglixman" { capabilities = ["update"] }
+      path "ssh-client/config/ca" { capabilities = ["read"] }
+  - name: ssh-user-ivelichanski
+    rules: |
+      path "ssh-client/sign/ivelichanski" { capabilities = ["update"] }
+      path "ssh-client/config/ca" { capabilities = ["read"] }
+  - name: ssh-user-lbuanos
+    rules: |
+      path "ssh-client/sign/lbuanos" { capabilities = ["update"] }
+      path "ssh-client/config/ca" { capabilities = ["read"] }
+  - name: ssh-user-bkedem
+    rules: |
+      path "ssh-client/sign/bkedem" { capabilities = ["update"] }
+      path "ssh-client/config/ca" { capabilities = ["read"] }
+  - name: ssh-user-ugonen
+    rules: |
+      path "ssh-client/sign/ugonen" { capabilities = ["update"] }
+      path "ssh-client/config/ca" { capabilities = ["read"] }
+  - name: ssh-user-efarago
+    rules: |
+      path "ssh-client/sign/efarago" { capabilities = ["update"] }
+      path "ssh-client/config/ca" { capabilities = ["read"] }
+  - name: ssh-user-dzbarski
+    rules: |
+      path "ssh-client/sign/dzbarski" { capabilities = ["update"] }
+      path "ssh-client/config/ca" { capabilities = ["read"] }
+  - name: ssh-user-afradlin
+    rules: |
+      path "ssh-client/sign/afradlin" { capabilities = ["update"] }
+      path "ssh-client/config/ca" { capabilities = ["read"] }
+  - name: ssh-user-asharf
+    rules: |
+      path "ssh-client/sign/asharf" { capabilities = ["update"] }
+      path "ssh-client/config/ca" { capabilities = ["read"] }
+  - name: ssh-user-amanzur
+    rules: |
+      path "ssh-client/sign/amanzur" { capabilities = ["update"] }
+      path "ssh-client/config/ca" { capabilities = ["read"] }
+  - name: ssh-user-rkazarnovsky
+    rules: |
+      path "ssh-client/sign/rkazarnovsky" { capabilities = ["update"] }
+      path "ssh-client/config/ca" { capabilities = ["read"] }
+  - name: ssh-user-zmarkfeld
+    rules: |
+      path "ssh-client/sign/zmarkfeld" { capabilities = ["update"] }
+      path "ssh-client/config/ca" { capabilities = ["read"] }
+  - name: ssh-user-ichernomorin
+    rules: |
+      path "ssh-client/sign/ichernomorin" { capabilities = ["update"] }
+      path "ssh-client/config/ca" { capabilities = ["read"] }
+  - name: ssh-user-ohayoun
+    rules: |
+      path "ssh-client/sign/ohayoun" { capabilities = ["update"] }
+      path "ssh-client/config/ca" { capabilities = ["read"] }
+  - name: ssh-user-zmetzger
+    rules: |
+      path "ssh-client/sign/zmetzger" { capabilities = ["update"] }
+      path "ssh-client/config/ca" { capabilities = ["read"] }
+  - name: ssh-user-svaiman
+    rules: |
+      path "ssh-client/sign/svaiman" { capabilities = ["update"] }
+      path "ssh-client/config/ca" { capabilities = ["read"] }
+  - name: ssh-user-nbasson
+    rules: |
+      path "ssh-client/sign/nbasson" { capabilities = ["update"] }
+      path "ssh-client/config/ca" { capabilities = ["read"] }
+  - name: ssh-user-msela
+    rules: |
+      path "ssh-client/sign/msela" { capabilities = ["update"] }
+      path "ssh-client/config/ca" { capabilities = ["read"] }
+  - name: ssh-user-spanchenko
+    rules: |
+      path "ssh-client/sign/spanchenko" { capabilities = ["update"] }
+      path "ssh-client/config/ca" { capabilities = ["read"] }
+  - name: ssh-user-cgoldish
+    rules: |
+      path "ssh-client/sign/cgoldish" { capabilities = ["update"] }
+      path "ssh-client/config/ca" { capabilities = ["read"] }
+users:
+  gilad-cohen: ssh-user-gilad.cohen
+  cavraham: ssh-user-cavraham
+  cgoldish: ssh-user-cgoldish
+  AmitBer: ssh-user-aberkun
+  ggilin: ssh-user-ggilin
+  dpolonsky: ssh-user-dpolonsky
+  tomer-datorama: ssh-user-tglixman
+  ijevsk: ssh-user-ivelichanski
+  liranbuanosSF: ssh-user-lbuanos
+  BKedem: ssh-user-bkedem
+  ugonen: ssh-user-ugonen
+  eyalfa: ssh-user-efarago
+  dintel: ssh-user-dzbarski
+  anovosiolov: ssh-user-afradlin
+  anyasharf: ssh-user-asharf
+  assafmanzur: ssh-user-amanzur
+  romkazdato: ssh-user-rkazarnovsky
+  zohar-markfeld: ssh-user-zmarkfeld
+  ilyache: ssh-user-ichernomorin
+  ohayoun: ssh-user-ohayoun
+  zeevMetz: ssh-user-zmetzger
+  shirelvaiman: ssh-user-svaiman
+  nbasson: ssh-user-nbasson
+  may-sela: ssh-user-msela
+  stasp44: ssh-user-spanchenko
+  cgoldish: ssh-user-cgoldish
