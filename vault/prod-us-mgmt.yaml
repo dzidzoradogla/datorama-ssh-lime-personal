@@ -1,8 +1,4 @@
 policies:
-  - name: ssh-user-dadoglabessa
-    rules: |
-      path "ssh-client/sign/dadoglabessa" { capabilities = ["update"] }
-      path "ssh-client/config/ca" { capabilities = ["read"] }
   - name: ssh-user-gilad.cohen
     rules: |
       path "ssh-client/sign/gilad.cohen" { capabilities = ["update"] }
@@ -108,7 +104,6 @@ policies:
       path "ssh-client/sign/cgoldish" { capabilities = ["update"] }
       path "ssh-client/config/ca" { capabilities = ["read"] }
 users:
-  dzidzoradogla: ssh-user-dadoglabessa
   gilad-cohen: ssh-user-gilad.cohen
   cavraham: ssh-user-cavraham
   cgoldish: ssh-user-cgoldish
